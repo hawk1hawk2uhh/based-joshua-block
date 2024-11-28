@@ -1,0 +1,27 @@
+H:\code\bro is a code\bro is a code\bin\Debug\net8.0-windows\bro is a code.exe
+H:\code\bro is a code\bro is a code\bin\Debug\net8.0-windows\bro is a code.deps.json
+H:\code\bro is a code\bro is a code\bin\Debug\net8.0-windows\bro is a code.runtimeconfig.json
+H:\code\bro is a code\bro is a code\bin\Debug\net8.0-windows\bro is a code.dll
+H:\code\bro is a code\bro is a code\bin\Debug\net8.0-windows\bro is a code.pdb
+H:\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro_is_a_code.Form1.resources
+H:\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.csproj.GenerateResource.cache
+H:\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.GeneratedMSBuildEditorConfig.editorconfig
+H:\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.AssemblyInfoInputs.cache
+H:\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.AssemblyInfo.cs
+H:\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.csproj.CoreCompileInputs.cache
+H:\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.dll
+H:\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\refint\bro is a code.dll
+H:\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.pdb
+H:\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.genruntimeconfig.cache
+H:\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\ref\bro is a code.dll
+H:\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro_is_a_code.Properties.Resources.resources
+\\JLC-FSRV01\S24000007316\Documents\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro_is_a_code.Form1.resources
+\\JLC-FSRV01\S24000007316\Documents\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro_is_a_code.Properties.Resources.resources
+\\JLC-FSRV01\S24000007316\Documents\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.csproj.GenerateResource.cache
+\\JLC-FSRV01\S24000007316\Documents\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.GeneratedMSBuildEditorConfig.editorconfig
+\\JLC-FSRV01\S24000007316\Documents\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.AssemblyInfoInputs.cache
+\\JLC-FSRV01\S24000007316\Documents\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.AssemblyInfo.cs
+\\JLC-FSRV01\S24000007316\Documents\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.csproj.CoreCompileInputs.cache
+\\JLC-FSRV01\S24000007316\Documents\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.dll
+\\JLC-FSRV01\S24000007316\Documents\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\refint\bro is a code.dll
+\\JLC-FSRV01\S24000007316\Documents\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.pdb
