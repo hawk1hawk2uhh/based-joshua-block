@@ -1,5 +1,3 @@
-using System.Xml.Serialization;
-
 namespace bro_is_a_code
 {
 
@@ -11,6 +9,17 @@ namespace bro_is_a_code
         Button b;
         bool iswinroom = false;
 
+        int turn = 0;
+        bool lose = false;
+        bool win = false; 
+
+        int health = 100;
+
+        int counterPoison = 0;
+        bool truePoison = false;
+
+        int counterFire = 0;
+        bool trueFire = false;
         public Form1()
         {
             InitializeComponent();
@@ -44,17 +53,14 @@ namespace bro_is_a_code
                         else if (newrRandom >= 1 && newrRandom <= 8)
                         {
                             b.Tag = new Room("Poison", i, j);
-                            effect(0);
                         }
                         else if (newrRandom >= 9 && newrRandom <= 16)
                         {
                             b.Tag = new Room("Fire", i, j);
-                            effect(1);
                         }
                         else if (newrRandom >= 17 && newrRandom <= 24)
                         {
                             b.Tag = new Room("Spike", i, j);
-                            effect(2);
                         }
                         else if (newrRandom >= 25 && newrRandom <= 32)
                         {
@@ -63,7 +69,6 @@ namespace bro_is_a_code
                         else if (newrRandom >= 36 && newrRandom <= 44)
                         {
                             b.Tag = new Room("Health", i, j);
-                            effect(3);
                         }
                         else if (newrRandom >= 45 && newrRandom <= 60)
                         {
@@ -72,7 +77,6 @@ namespace bro_is_a_code
                         else if (newrRandom >= 61 && newrRandom <= 64)
                         {
                             b.Tag = new Room("Map", i, j);
-                            effect(4);
                         }
                         else
                         {
@@ -86,32 +90,33 @@ namespace bro_is_a_code
                 }
             }
         }
-        int turn = 0;
-        int health = 100;
+        
+        
+
         //function that checks what button is pressed, and what room type it is
         void clickButton(object sender, EventArgs e)
-        { 
+        {
             Button b = sender as Button;
             Room r = b.Tag as Room;
             if (r.roomInfo == "Poison")
             {
                 label3.Text = "Poison";
+                effect(0, r);
             }
             else if (r.roomInfo == "Fire")
             {
                 label3.Text = "Fire";
+                effect(1, r);
             }
             else if (r.roomInfo == "Spike")
             {
                 label3.Text = "Spike";
-            }
-            else if (r.roomInfo == "Shield")
-            {
-                label3.Text = "Shield";
+                effect(2, r);
             }
             else if (r.roomInfo == "Health")
             {
                 label3.Text = "Health";
+                effect(3, r);
             }
             else if (r.roomInfo == "Empty")
             {
@@ -124,10 +129,7 @@ namespace bro_is_a_code
             else if (r.roomInfo == "Win")
             {
                 label3.Text = "Win";
-            }
-            else if (r.roomInfo == "Airfryer")
-            {
-                label3.Text = "Airfryer";
+                win = true;
             }
             else if (r.roomInfo == "Map")
             {
@@ -135,35 +137,94 @@ namespace bro_is_a_code
             }
             turn++;
             label2.Text = "Turn: " + turn;
+            Poison(truePoison);
+            Fire(trueFire);
+            r.roomInfo = "Empty";
+            if (lose == true)
+            {
+                label3.Text = "You Lose!";
+            }
+            else if (win == true)
+            {
+                label3.Text = "You Win!";
+            }
         }
 
-        void effect(int b)
+        void effect(int b, Room r)
         {
             if (b == 0)
             {
-                while (turn < turn + 6)
-                {
-                    health = health - 5;
-                    healthBar.Value = health;
-                }
+                //poison
+                truePoison = true;
+
             }
             else if (b == 1)
             {
-                while (turn < turn + 2)
-                {
-                    health = health - 15;
-                    healthBar.Value = health;
-                }
+                //fire
+                trueFire = true;
             }
             else if (b == 2)
             {
+                //spike
                 health = health - 25;
+                HealthBar();
             }
             else if (b == 3)
             {
-                health = health + 50;
+                //heal
+                if (health > 50)
+                {
+                    health = 100;
+                }
+                else
+                {
+                    health = health + 50;
+                }
+                HealthBar();
             }
-        } 
+            else if (b == 4)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (r.xCoord == j && r.yCoord == j)
+                        {
+                            
+                        }
+                    }
+                }
+            }
+        }
+        void Poison(bool tf)
+        {
+            if (tf == true)
+            {
+                health = health - 5;
+                HealthBar();
+                counterPoison++;
+                if (counterPoison == 6)
+                {
+                    truePoison = false;
+                    counterPoison = 0;
+                }
+            }
+        }
+        void Fire(bool tf)
+        {
+
+            if (tf == true)
+            {
+                health = health - 10;
+                HealthBar();
+                counterFire++;
+                if (counterFire == 3)
+                {
+                    trueFire = false;
+                    counterFire = 0;
+                }
+            }
+        }
         private void B_Click(object? sender, EventArgs e)
         {
             clickButton(sender, e);
@@ -185,19 +246,39 @@ namespace bro_is_a_code
         {
 
         }
-    }
 
-    class Room
-    {
-        public string roomInfo;
-        public int xCoord;
-        public int yCoord;
-
-        public Room(string roomInfo, int xCoord, int yCoord)
+        private void healthBar_Click(object sender, EventArgs e)
         {
-            this.roomInfo = roomInfo;
-            this.xCoord = xCoord;
-            this.yCoord = yCoord;
+
+        }
+        void HealthBar()
+        {
+            healthBar.Maximum = 100;
+            healthBar.Minimum = 0;
+            if (health < 0)
+            {
+                healthBar.Value = 0;
+                lose = true;
+            }
+            else
+            {
+                healthBar.Value = health;
+            }
+
+        }
+
+        class Room
+        {
+            public string roomInfo;
+            public int xCoord;
+            public int yCoord;
+
+            public Room(string roomInfo, int xCoord, int yCoord)
+            {
+                this.roomInfo = roomInfo;
+                this.xCoord = xCoord;
+                this.yCoord = yCoord;
+            }
         }
     }
 }

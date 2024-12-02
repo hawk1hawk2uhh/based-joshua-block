@@ -51,6 +51,7 @@
             healthBar.Size = new Size(363, 15);
             healthBar.TabIndex = 0;
             healthBar.Value = 100;
+            healthBar.Click += healthBar_Click;
             // 
             // label2
             // 
