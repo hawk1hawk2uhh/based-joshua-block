@@ -1,3 +1,4 @@
+
 namespace bro_is_a_code
 {
 
@@ -11,7 +12,7 @@ namespace bro_is_a_code
 
         int turn = 0;
         bool lose = false;
-        bool win = false; 
+        bool win = false;
 
         int health = 100;
 
@@ -20,6 +21,9 @@ namespace bro_is_a_code
 
         int counterFire = 0;
         bool trueFire = false;
+
+        bool logTrue = false;
+        List<string> log = new List<string>();
         public Form1()
         {
             InitializeComponent();
@@ -42,62 +46,75 @@ namespace bro_is_a_code
                         b.FlatStyle = FlatStyle.Popup;
                         b.BackColor = Color.Transparent;
                         b.Click += clickButton;
+                        b.Text = "";
                         background.Controls.Add(b);
                         //generates random number to create different room types
 
                         int newrRandom = random.Next(0, 65);
+                        Room room;
+                        Color textcolor;
                         if (newrRandom == 0)
                         {
-                            b.Tag = new Room("Airfryer", i, j);
-                        }
-                        else if (newrRandom >= 1 && newrRandom <= 8)
-                        {
-                            b.Tag = new Room("Poison", i, j);
+                            room = new Room("Airfryer", i, j);
+                            textcolor = Color.Orange;
                         }
                         else if (newrRandom >= 9 && newrRandom <= 16)
                         {
-                            b.Tag = new Room("Fire", i, j);
+                            room = new Room("Fire", i, j);
+                            textcolor = Color.Red;
                         }
-                        else if (newrRandom >= 17 && newrRandom <= 24)
+                        else if ((newrRandom >= 17 && newrRandom <= 24) || (newrRandom >= 45 && newrRandom <= 60))
                         {
-                            b.Tag = new Room("Spike", i, j);
+                            room = new Room("Spike", i, j);
+                            textcolor = Color.DarkGray;
                         }
                         else if (newrRandom >= 25 && newrRandom <= 32)
                         {
-                            b.Tag = new Room("Empty", i, j);
+                            room = new Room("Empty", i, j);
+                            textcolor = Color.White;
                         }
                         else if (newrRandom >= 36 && newrRandom <= 44)
                         {
-                            b.Tag = new Room("Health", i, j);
-                        }
-                        else if (newrRandom >= 45 && newrRandom <= 60)
-                        {
-                            b.Tag = new Room("Empty", i, j);
+                            room = new Room("Health", i, j);
+                            textcolor = Color.Green;
                         }
                         else if (newrRandom >= 61 && newrRandom <= 64)
                         {
-                            b.Tag = new Room("Map", i, j);
+                            room = new Room("Map", i, j);
+                            textcolor = Color.Yellow;
+                        }
+                        else if (iswinroom == false)
+                        {
+                            room = new Room("Win", i, j);
+                            iswinroom = true;
+                            textcolor = Color.Gold;
                         }
                         else
                         {
-                            b.Tag = new Room("Win", i, j);
-                            iswinroom = true;
+                            room = new Room("Poison", i, j);
+                            textcolor = Color.DarkGreen;
                         }
+
+                        b.Tag = room;
                         buttons[i, j] = b;
+                        b.ForeColor = textcolor;
 
                     }
 
                 }
             }
         }
-        
-        
+
+
 
         //function that checks what button is pressed, and what room type it is
         void clickButton(object sender, EventArgs e)
         {
+
             Button b = sender as Button;
             Room r = b.Tag as Room;
+            b.Text = r.roomInfo;
+
             if (r.roomInfo == "Poison")
             {
                 label3.Text = "Poison";
@@ -125,15 +142,23 @@ namespace bro_is_a_code
             else if (r.roomInfo == "Map")
             {
                 label3.Text = "Map";
+                effect(4, r);
             }
             else if (r.roomInfo == "Win")
             {
                 label3.Text = "Win";
                 win = true;
+                winBox.BringToFront();
+                DisableButtons();
             }
             else if (r.roomInfo == "Map")
             {
                 label3.Text = "Map";
+            }
+            else if (r.roomInfo == "Airfryer")
+            {
+                label3.Text = "Airfryer";
+                airFryerBox.Image = Image.FromFile("airfryerowning.png");
             }
             turn++;
             label2.Text = "Turn: " + turn;
@@ -143,13 +168,13 @@ namespace bro_is_a_code
             if (lose == true)
             {
                 label3.Text = "You Lose!";
+                DisableButtons();
+                loseBox.BringToFront();
             }
-            else if (win == true)
-            {
-                label3.Text = "You Win!";
-            }
+
         }
 
+        //runs whatever procedure is needed to apply effect from room
         void effect(int b, Room r)
         {
             if (b == 0)
@@ -184,18 +209,10 @@ namespace bro_is_a_code
             }
             else if (b == 4)
             {
-                for (int i = 0; i < 8; i++)
-                {
-                    for (int j = 0; j < 8; j++)
-                    {
-                        if (r.xCoord == j && r.yCoord == j)
-                        {
-                            
-                        }
-                    }
-                }
+                Map(true);
             }
         }
+        //poison procedure, does 30 damage over 6 turns
         void Poison(bool tf)
         {
             if (tf == true)
@@ -210,6 +227,7 @@ namespace bro_is_a_code
                 }
             }
         }
+        //fire procedure, does 30 damage over 3 turns
         void Fire(bool tf)
         {
 
@@ -224,6 +242,63 @@ namespace bro_is_a_code
                     counterFire = 0;
                 }
             }
+        }
+        //map procedure, displays what each room is
+        void Map(bool tf)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    Button button = buttons[i, j];
+                    Room room = button.Tag as Room;
+                    button.Text = room.roomInfo;
+                }
+            }
+        }
+        //changes progress bar "healthBar" to whatever the current health is, also checks if health goes below 1 and if it does, turns the "lose" value to true
+        void HealthBar()
+        {
+            healthBar.Maximum = 100;
+            healthBar.Minimum = 0;
+            if (health <= 0)
+            {
+                healthBar.Value = 0;
+                lose = true;
+            }
+            else
+            {
+                healthBar.Value = health;
+            }
+
+        }
+
+        //disables buttons, also writes if they won or lost to "Log.txt" and how many turns it took them
+        void DisableButtons()
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    buttons[i, j].Enabled = false;
+                }
+            }
+
+            if (!File.Exists("Log.txt"))
+            {
+                FileStream f = File.Create("Log.txt");
+                f.Close();
+            }
+            StreamWriter Log = new StreamWriter("Log.txt", true);
+            if (lose == true)
+            {
+                Log.WriteLine("Lose on Turn: " + turn);
+            }
+            else
+            {
+                Log.WriteLine("Win on Turn: " + turn);
+            }
+            Log.Close();
         }
         private void B_Click(object? sender, EventArgs e)
         {
@@ -251,22 +326,8 @@ namespace bro_is_a_code
         {
 
         }
-        void HealthBar()
-        {
-            healthBar.Maximum = 100;
-            healthBar.Minimum = 0;
-            if (health < 0)
-            {
-                healthBar.Value = 0;
-                lose = true;
-            }
-            else
-            {
-                healthBar.Value = health;
-            }
 
-        }
-
+        //room class that stores the current x and y coords, plus the room type
         class Room
         {
             public string roomInfo;
@@ -279,6 +340,69 @@ namespace bro_is_a_code
                 this.xCoord = xCoord;
                 this.yCoord = yCoord;
             }
+        }
+
+        //displays log.txt info, by showing/hiding text box and appending each line in log.txt to it
+        private void logButton_Click(object sender, EventArgs e)
+        {
+            if (logTrue == false)
+            {
+                logBox.Visible = true;
+                logBox.BringToFront();
+                logTrue = true;
+                string[] y = File.ReadAllLines("Log.txt");
+                
+                logBox.Clear();
+
+                foreach (string line in y)
+                {
+                    logBox.AppendText(line);
+                    logBox.AppendText(Environment.NewLine);
+                }
+
+            }
+            else
+            {
+                logBox.Visible = false;
+                logTrue = false;
+                logBox.Clear();
+
+            }
+        }
+
+        //resets all variables, deletes old buttons and creates new ones
+        void RestartGame()
+        {
+            health = 100;
+            turn = 0;
+            lose = false;
+            win = false;
+            trueFire = false;
+            truePoison = false;
+            counterFire = 0;
+            counterPoison = 0;
+            iswinroom = false;
+
+            foreach (Button button in buttons)
+            {
+                if (button != null)
+                {
+                    background.Controls.Remove(button);
+                }
+            }
+
+            buttons = new Button[8, 8];
+            Rooms = new int[8, 8];
+            CreateButtons();
+
+            label2.Text = "Turn: " + turn;
+            label3.Text = "";
+            HealthBar();
+        }
+
+        private void restart_Click(object sender, EventArgs e)
+        {
+            RestartGame();
         }
     }
 }

@@ -25,3 +25,20 @@ H:\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro_is_a_code.Prope
 \\JLC-FSRV01\S24000007316\Documents\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.dll
 \\JLC-FSRV01\S24000007316\Documents\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\refint\bro is a code.dll
 \\JLC-FSRV01\S24000007316\Documents\code\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.pdb
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\bin\Debug\net8.0-windows\bro is a code.exe
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\bin\Debug\net8.0-windows\bro is a code.deps.json
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\bin\Debug\net8.0-windows\bro is a code.runtimeconfig.json
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\bin\Debug\net8.0-windows\bro is a code.dll
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\bin\Debug\net8.0-windows\bro is a code.pdb
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro_is_a_code.Form1.resources
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro_is_a_code.Properties.Resources.resources
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.csproj.GenerateResource.cache
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.AssemblyInfo.cs
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.dll
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\obj\Debug\net8.0-windows\refint\bro is a code.dll
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.pdb
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\obj\Debug\net8.0-windows\bro is a code.genruntimeconfig.cache
+C:\Users\User\source\repos\based-joshua-block-main\bro is a code\bro is a code\obj\Debug\net8.0-windows\ref\bro is a code.dll
